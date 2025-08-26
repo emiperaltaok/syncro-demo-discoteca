@@ -182,7 +182,7 @@ export default function HomePage() {
           </div>
           
           <div className="mt-6 text-xs text-gray-400 space-y-1">
-            <div>Demo Usuario: demo2025</div>
+            <div>Demo Usuario: xxxx45</div>
             <div>Demo Admin: admin2025</div>
           </div>
         </div>
