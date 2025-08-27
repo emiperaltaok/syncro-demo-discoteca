@@ -69,10 +69,10 @@ export default function HomePage() {
   const handleLogin = () => {
     setLoginError('');
     
-    if (password === 'demo2025') {
+    if (password === process.env.DEMO_USER_PASSWORD) {
       setUserType('user');
       setIsLoggedIn(true);
-    } else if (password === 'admin2025') {
+    } else if (password === process.env.DEMO_ADMIN_PASSWORD) {
       setUserType('admin');
       setIsLoggedIn(true);
     } else {
@@ -92,13 +92,13 @@ export default function HomePage() {
   };
 
   const shareWhatsApp = () => {
-    const message = `SYNCRO Analytics Dashboard\n\nAccede al análisis exclusivo:\n${window.location.href}\n\nContraseña: demo2025`;
+    const message = `SYNCRO Analytics Dashboard\n\nAccede al análisis exclusivo:\n${window.location.href}\n\nContraseña: ${process.env.DEMO_USER_PASSWORD}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const shareEmail = () => {
     const subject = 'SYNCRO Analytics - Dashboard Exclusivo';
-    const body = `Acceso al dashboard:\n\nURL: ${window.location.href}\nContraseña: demo2025`;
+    const body = `Acceso al dashboard:\n\nURL: ${window.location.href}\nContraseña: ${process.env.DEMO_USER_PASSWORD}`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -182,8 +182,8 @@ export default function HomePage() {
           </div>
           
           <div className="mt-6 text-xs text-gray-400 space-y-1">
-            <div>Demo Usuario: xxxx45</div>
-            <div>Demo Admin: admin2025</div>
+            <div>Demo Usuario: {process.env.DEMO_USER_PASSWORD}</div>
+            <div>Demo Admin: {process.env.DEMO_ADMIN_PASSWORD}</div>
           </div>
         </div>
       </div>
