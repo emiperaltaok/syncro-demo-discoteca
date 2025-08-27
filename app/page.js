@@ -69,10 +69,10 @@ export default function HomePage() {
   const handleLogin = () => {
     setLoginError('');
     
-    if (password === process.env.DEMO_USER_PASSWORD) {
+    if (password === process.env.NEXT_PUBLIC_DEMO_USER_PASSWORD) {
       setUserType('user');
       setIsLoggedIn(true);
-    } else if (password === process.env.DEMO_ADMIN_PASSWORD) {
+    } else if (password === process.env.NEXT_PUBLIC_DEMO_ADMIN_PASSWORD) {
       setUserType('admin');
       setIsLoggedIn(true);
     } else {
@@ -92,13 +92,13 @@ export default function HomePage() {
   };
 
   const shareWhatsApp = () => {
-    const message = `SYNCRO Analytics Dashboard\n\nAccede al análisis exclusivo:\n${window.location.href}\n\nContraseña: ${process.env.DEMO_USER_PASSWORD}`;
+    const message = `SYNCRO Analytics Dashboard\n\nAccede al análisis exclusivo:\n${window.location.href}\n\nContraseña: ${process.env.NEXT_PUBLIC_DEMO_USER_PASSWORD}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const shareEmail = () => {
     const subject = 'SYNCRO Analytics - Dashboard Exclusivo';
-    const body = `Acceso al dashboard:\n\nURL: ${window.location.href}\nContraseña: ${process.env.DEMO_USER_PASSWORD}`;
+    const body = `Acceso al dashboard:\n\nURL: ${window.location.href}\nContraseña: ${process.env.NEXT_PUBLIC_DEMO_USER_PASSWORD}`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
