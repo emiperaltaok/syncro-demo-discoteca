@@ -10,6 +10,8 @@ export default function HomePage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [theme, setTheme] = useState('dark');
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   const appData = {
     stats: [
@@ -213,6 +215,20 @@ export default function HomePage() {
           SYNCRO Analitica
         </h1>
         <div className="flex items-center gap-4">
+          {userType === 'admin' && (
+            <button
+              onClick={() => setShowAdminPanel(!showAdminPanel)}
+              className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${showAdminPanel
+                  ? 'bg-purple-500 text-white'
+                  : theme === 'dark'
+                    ? 'bg-gray-800/80 border-gray-700 hover:bg-purple-500'
+                    : 'bg-white/80 border-gray-200 hover:bg-purple-500 hover:text-white'
+                } border`}
+            >
+              <Shield className="w-4 h-4" />
+              Panel Admin
+            </button>
+          )}
           <div className={`px-4 py-2 rounded-full backdrop-blur-lg border ${
             theme === 'dark' ? 'bg-gray-800/80 border-gray-700' : 'bg-white/80 border-gray-200'
           }`}>
