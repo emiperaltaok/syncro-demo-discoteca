@@ -334,6 +334,175 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* PANEL ADMIN */}
+      {showAdminPanel && userType === 'admin' && (
+        <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4`}>
+          <div className={`w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl border ${
+            theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+          }`}>
+            <div className="sticky top-0 p-6 border-b border-gray-700 bg-gradient-to-r from-purple-600 to-indigo-600">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                  <Shield className="w-6 h-6" />
+                  Panel de Administración
+                </h2>
+                <button
+                  onClick={() => setShowAdminPanel(false)}
+                  className="text-white hover:bg-white/20 p-2 rounded-lg transition-all"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-8">
+              
+              {/* Sección Estadísticas */}
+              <div className={`rounded-xl p-6 border ${
+                theme === 'dark' ? 'bg-gray-900 border-gray-700' : 'bg-gray-50 border-gray-200'
+              }`}>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  📊 Gestionar Estadísticas
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {appData.stats.map((stat, index) => (
+                    <div key={stat.id} className={`p-4 rounded-lg border ${
+                      theme === 'dark' ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                    }`}>
+                      <div className="space-y-2">
+                        <input
+                          type="text"
+                          defaultValue={stat.label}
+                          className={`w-full p-2 rounded border text-sm ${
+                            theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+                          }`}
+                          placeholder="Título de la estadística"
+                        />
+                        <input
+                          type="text"
+                          defaultValue={stat.value}
+                          className={`w-full p-2 rounded border text-lg font-bold ${
+                            theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+                          }`}
+                          placeholder="Valor"
+                        />
+                        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded text-sm transition-all">
+                          Actualizar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sección Insights */}
+              <div className={`rounded-xl p-6 border ${
+                theme === 'dark' ? 'bg-gray-900 border-gray-700' : 'bg-gray-50 border-gray-200'
+              }`}>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  💡 Gestionar Insights
+                </h3>
+                <div className="space-y-4">
+                  {appData.insights.map((insight, index) => (
+                    <div key={insight.id} className={`p-4 rounded-lg border ${
+                      theme === 'dark' ? 'bg-gray-800 border-gray-600' : 'bg-white border-gray-300'
+                    }`}>
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                        <div>
+                          <label className="block text-sm mb-1">Icono</label>
+                          <input
+                            type="text"
+                            defaultValue={insight.icon}
+                            className={`w-full p-2 rounded border text-2xl text-center ${
+                              theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm mb-1">Título</label>
+                          <input
+                            type="text"
+                            defaultValue={insight.title}
+                            className={`w-full p-2 rounded border ${
+                              theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm mb-1">Descripción</label>
+                          <textarea
+                            defaultValue={insight.description}
+                            className={`w-full p-2 rounded border resize-none h-20 ${
+                              theme === 'dark' ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-300'
+                            }`}
+                          />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-sm transition-all">
+                            Actualizar
+                          </button>
+                          <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded text-sm transition-all">
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <button className="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded font-semibold transition-all">
+                    + Agregar Nuevo Insight
+                  </button>
+                </div>
+              </div>
+
+              {/* Sección Upload PDF */}
+              <div className={`rounded-xl p-6 border ${
+                theme === 'dark' ? 'bg-gray-900 border-gray-700' : 'bg-gray-50 border-gray-200'
+              }`}>
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  📄 Gestionar PDFs
+                </h3>
+                <div className="space-y-4">
+                  <div className={`border-2 border-dashed rounded-lg p-8 text-center ${
+                    theme === 'dark' ? 'border-gray-600' : 'border-gray-300'
+                  }`}>
+                    <div className="text-4xl mb-4">📁</div>
+                    <p className="text-lg mb-4">Arrastra y suelta archivos PDF aquí</p>
+                    <input type="file" accept=".pdf" className="hidden" id="pdfUpload" />
+                    <label htmlFor="pdfUpload" className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg cursor-pointer inline-block transition-all">
+                      Seleccionar PDF
+                    </label>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-3 bg-green-100 border border-green-300 rounded">
+                      <span>📄 reporte-mensual.pdf</span>
+                      <button className="text-red-500 hover:text-red-700">Eliminar</button>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-green-100 border border-green-300 rounded">
+                      <span>📄 analisis-completo.pdf</span>
+                      <button className="text-red-500 hover:text-red-700">Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botones de Acción */}
+              <div className="flex gap-4 pt-4">
+                <button className="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition-all">
+                  💾 Guardar Todos los Cambios
+                </button>
+                <button 
+                  onClick={() => setShowAdminPanel(false)}
+                  className="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold transition-all"
+                >
+                  ❌ Cerrar Panel
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="fixed bottom-8 left-8">
         <button
           onClick={() => openContact(appData.contacts[0])}
